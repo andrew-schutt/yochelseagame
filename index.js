@@ -39,12 +39,11 @@ setInterval(function() {
 	var nextGame = findNextGame();
 	console.log(nextGame);
 	var nextDate = new Date(nextGame.year, nextGame.month, nextGame.day, nextGame.hour, nextGame.minute);
-	nextDate = new Date();
 	if (compareDateToMinute(nextDate, curDate)) {
-		console.log("chelsea game");
+		console.log("chelsea game!");
 		sendAllYo()
 	} else {
-		console.log("no match?");
+		console.log("no game?");
 	};
 }, 60000);
 
