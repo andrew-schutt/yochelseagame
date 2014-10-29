@@ -37,13 +37,12 @@ function sendAllYo() {
 setInterval(function() {
 	var curDate = new Date();
 	var nextGame = findNextGame();
-	console.log(nextGame);
 	var nextDate = new Date(nextGame.year, nextGame.month, nextGame.day, nextGame.hour, nextGame.minute);
 	if (compareDateToMinute(nextDate, curDate)) {
 		console.log("chelsea game!");
 		sendAllYo()
 	} else {
-		console.log("no game?");
+		console.log("no games?");
 	};
 }, 60000);
 
