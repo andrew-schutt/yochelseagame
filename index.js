@@ -44,7 +44,7 @@ setInterval(function() {
 	} else {
 		console.log("no games?");
 	};
-}, 60000);
+}, 30000);
 
 app.set('port', (process.env.PORT || 5000));
 
