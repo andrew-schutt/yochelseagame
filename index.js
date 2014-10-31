@@ -42,7 +42,8 @@ setInterval(function() {
 		console.log("chelsea game!");
 		sendAllYo()
 	} else {
-		console.log("no games?");
+		console.log("curTime: " + curDate)
+		console.log("nextGame: " + nextDate)
 	};
 }, 30000);
 
