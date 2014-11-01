@@ -14,12 +14,8 @@ function findNextGame() {
 	};
 };
 
-function compareDateToMinute(a, b) {
-	if (a.getYear() === b.getYear() 
-	    && a.getMonth() === b.getMonth() 
-	    && a.getDay() === b.getDay() 
-	    && a.getHours() === b.getHours() 
-	    && a.getMinutes() === b.getMinutes()) {
+function compareDateToMinute(older, newer) {
+	if (Math.abs(older - newer) <= 60000) {
 		return true;
 	}
 	return false;
@@ -42,8 +38,7 @@ setInterval(function() {
 		console.log("chelsea game!");
 		sendAllYo()
 	} else {
-		console.log("curTime: " + curDate)
-		console.log("nextGame: " + nextDate)
+		console.log(Math.abs(nextDate - curDate) + " milliseconds till next game... ")
 	};
 }, 30000);
 
