@@ -21,7 +21,7 @@ function compareDateToMinute(older, newer) {
 	return false;
 };
 
-function sendAllYo() {
+function sendChelseaGameYo() {
 	request.post('http://api.justyo.co/yoall/',
 		{
 	        form: {
@@ -36,7 +36,7 @@ setInterval(function() {
 	var nextDate = new Date(nextGame.year, nextGame.month, nextGame.day, nextGame.hour, nextGame.minute);
 	if (compareDateToMinute(nextDate, curDate)) {
 		console.log("chelsea game!");
-		sendAllYo()
+		sendChelseaGameYo()
 	} else {
 		console.log(Math.abs(nextDate - curDate) + " milliseconds till next game... ")
 	};
