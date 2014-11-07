@@ -1,54 +1,59 @@
 var express = require('express');
 var request = require('request');
+var cheerio = require('cheerio');
 var app = express();
-var cfcepl = require('./cfcepl.json');
 
-function findNextGame() {
-	for (i in cfcepl.games) {
-		var curGame = cfcepl.games[i];
-		var gameDate = new Date(curGame.year, curGame.month, curGame.day, curGame.hour, curGame.minute);
-		if (gameDate > new Date()) {
-			var nextGame = cfcepl.games[i];
-			return nextGame;
-		};
-	};
+function checkWithinMinuteOfGame(older, newer) {
+    if (Math.abs(older - newer) <= 60000) {
+        return true;
+    }
+    return false;
 };
 
-function compareDateToMinute(older, newer) {
-	if (Math.abs(older - newer) <= 60000) {
-		return true;
-	}
-	return false;
-};
-
-function sendChelseaGameYo() {
-	request.post('http://api.justyo.co/yoall/',
-		{
-	        form: {
-	          api_token: '30b8c2bc-354e-4647-a1f9-2ec24ffd7a7b'
-	        }
-		});
+function sendChelseaGameYoAll() {
+    request.post('http://api.justyo.co/yoall/', {
+        form: {
+            api_token: '30b8c2bc-354e-4647-a1f9-2ec24ffd7a7b'
+        }
+    });
 }
 
-setInterval(function() {
-	var curDate = new Date();
-	var nextGame = findNextGame();
-	var nextDate = new Date(nextGame.year, nextGame.month, nextGame.day, nextGame.hour, nextGame.minute);
-	if (compareDateToMinute(nextDate, curDate)) {
-		console.log("chelsea game!");
-		sendChelseaGameYo()
-	} else {
-		console.log(Math.abs(nextDate - curDate) + " milliseconds till next game... ")
-	};
-}, 30000);
+function findNextGame(url, callback) {
+	var gameDateArray;
+	request(url, function (error, response, html) {
+	    if (!error && response.statusCode == 200) {
+	        var $ = cheerio.load(html);
+            gameDateArray = $('div.custom-column.col-3.match').children('span.time').text().split(/[\s,]+/);
+			callback(gameDateArray, detectNextGame)
+	    }
+	});
+}
 
-app.set('port', (process.env.PORT || 5000));
+function formatGameDate(gameDateArray, callback) {
+	var gameDate = gameDateArray;
+	gameDate = new Date(gameDateArray);
+	callback(gameDate, findNextGame);
+};
 
+function detectNextGame(gameDate, callback) {
+	setInterval(function () {
+	    var curDate = new Date();
+		console.log(gameDate);
+	    if (checkWithinMinuteOfGame(gameDate, curDate)) {
+	        console.log("chelsea game!");
+	        sendChelseaGameYoAll();
+			callback('http://www.chelseafc.com/matches/fixtures---results.html', formatGameDate)
+	    } else { 
+		    console.log(Math.abs(gameDate - curDate) + " milliseconds till next game... "); }
+	}, 30000);
+}
+
+findNextGame('http://www.chelseafc.com/matches/fixtures---results.html', formatGameDate);
+
+app.set('port', (process.env.PORT || 5050));
 app.use(express.static(__dirname + '/public'));
-
 //send all epl chelsea games in JSON
-app.get('/', function(request, response) { response.send(cfcepl.games) });
+app.get('/', function (request, response) { response.send(cfcepl.games); });
 //send upcoming(next) cheslsea game in JSON
-app.get('/nextgame', function(request, response) { response.send(nextGame) });
-
-app.listen(app.get('port'), function() { console.log("Node app is running at localhost:" + app.get('port')) });
+app.get('/nextgame', function (request, response) { response.send(nextGame); });
+app.listen(app.get('port'), function () { console.log("Running at port: " + app.get('port')); });
