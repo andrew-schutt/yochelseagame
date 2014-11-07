@@ -1,36 +1,5 @@
-# node-js-getting-started
+An app for learning about node.js, express, and using API's.  This will send out a Yo when a ChelseaFC game is starting. 
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+Scraps the Chelsea website for the next game time and date using cheerio.  Then checks for when the current time and date is within a minute of the start time and then sends out a Yo.  Finally it will go grab the next game time and proceed to wait for when the current time is within a minute of that date.  Rinse and repeat.  
 
-This application support the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
-
-## Running Locally
-
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku Toolbelt](https://toolbelt.heroku.com/) installed.
-
-```sh
-$ git clone git@github.com:heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
-$ npm install
-$ npm start
-```
-
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-## Deploying to Heroku
-
-```
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
-
-## Documentation
-
-For more information about using Node.js on Heroku, see these Dev Center articles:
-
-- [Getting Started with Node.js on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
-- [Heroku Node.js Support](https://devcenter.heroku.com/articles/nodejs-support)
-- [Node.js on Heroku](https://devcenter.heroku.com/categories/nodejs)
-- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
-- [Using WebSockets on Heroku with Node.js](https://devcenter.heroku.com/articles/node-websockets)
+Also, is a simple REST service for getting game schedule and next game. 
