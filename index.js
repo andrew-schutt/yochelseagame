@@ -47,6 +47,9 @@ function detectNextGame(gameDate, callback) {
 	    if (checkWithinMinuteOfGame(gameDate, curDate)) {
 	        console.log("chelsea game!");
 	        sendChelseaGameYoAll();
+			setTimeout(function() {
+				console.log('waiting for site to update')
+			}, 600000)
 			callback('http://www.chelseafc.com/matches/fixtures---results.html', formatGameDate)
 	    } else { 
 		    console.log('no chelsea game'); }
