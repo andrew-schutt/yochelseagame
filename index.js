@@ -3,8 +3,13 @@ var request = require('request');
 var cheerio = require('cheerio');
 var app = express();
 
+function dateDifference(older, newer) {
+	return Math.abs(older - newer)
+}
+
 function checkWithinMinuteOfGame(older, newer) {
-    if (Math.abs(older - newer) <= 60000) {
+	console.log(dateDifference(older, newer));
+    if ( dateDifference(older, newer) <= 60000 && dateDifference(older, newer) <= 15000 ) {
         return true;
     }
     return false;
@@ -44,7 +49,7 @@ function detectNextGame(gameDate, callback) {
 	        sendChelseaGameYoAll();
 			callback('http://www.chelseafc.com/matches/fixtures---results.html', formatGameDate)
 	    } else { 
-		    console.log(Math.abs(gameDate - curDate) + " milliseconds till next game... "); }
+		    console.log('no chelsea game'); }
 	}, 30000);
 }
 
