@@ -44,7 +44,7 @@ function formatGameDate(gameDateArray, callback) {
 function detectNextGame(gameDate, callback) {
 	setInterval(function () {
 	    var curDate = new Date();
-        http.get("http://peaceful-cove-7016.herokuapp.com");
+        http.get("http://yochelseagame.herokuapp.com");
 		console.log(gameDate);
 	    if (checkWithinMinuteOfGame(gameDate, curDate)) {
 	        console.log("chelsea game!");
