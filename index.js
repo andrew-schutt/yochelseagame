@@ -57,6 +57,11 @@ function detectNextGame(gameDate, callback) {
 	}, 30000);
 }
 
+function keep_awake() {setInterval(function() {
+      http.get("http://<your app name>.herokuapp.com");
+  }, 300000); 
+}
+
 findNextGame('http://www.chelseafc.com/matches/fixtures---results.html', formatGameDate);
 
 app.set('port', (process.env.PORT || 5050));
