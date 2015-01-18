@@ -44,6 +44,7 @@ function formatGameDate(gameDateArray, callback) {
 function detectNextGame(gameDate, callback) {
 	setInterval(function () {
 	    var curDate = new Date();
+        http.get("http://peaceful-cove-7016.herokuapp.com");
 		console.log(gameDate);
 	    if (checkWithinMinuteOfGame(gameDate, curDate)) {
 	        console.log("chelsea game!");
@@ -58,8 +59,7 @@ function detectNextGame(gameDate, callback) {
 }
 
 function keep_awake() {setInterval(function() {
-      http.get("http://peaceful-cove-7016.herokuapp.com");
-  }, 300000); 
+
 }
 
 findNextGame('http://www.chelseafc.com/matches/fixtures---results.html', formatGameDate);
@@ -67,7 +67,7 @@ findNextGame('http://www.chelseafc.com/matches/fixtures---results.html', formatG
 app.set('port', (process.env.PORT || 5050));
 app.use(express.static(__dirname + '/public'));
 //send all epl chelsea games in JSON
-app.get('/', function (request, response) { response.send(cfcepl.games); });
+// app.get('/', function (request, response) { response.send(cfcepl.games); });
 //send upcoming(next) cheslsea game in JSON
 app.get('/nextgame', function (request, response) { response.send(nextGame); });
 app.listen(app.get('port'), function () { console.log("Running at port: " + app.get('port')); });
