@@ -58,10 +58,6 @@ function detectNextGame(gameDate, callback) {
 	}, 30000);
 }
 
-function keep_awake() {setInterval(function() {
-
-}
-
 findNextGame('http://www.chelseafc.com/matches/fixtures---results.html', formatGameDate);
 
 app.set('port', (process.env.PORT || 5050));
