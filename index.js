@@ -58,7 +58,7 @@ function detectNextGame(gameDate, callback) {
 }
 
 function keep_awake() {setInterval(function() {
-      http.get("http://<your app name>.herokuapp.com");
+      http.get("http://peaceful-cove-7016.herokuapp.com");
   }, 300000); 
 }
 
