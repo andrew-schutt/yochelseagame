@@ -10,7 +10,7 @@
     "express": "latest",
     "request": "latest",
     "cheerio": "latest"
-    "http":    "latest"
+    "http": "latest"
   },
   "engines": {
     "node": "0.10.x"
