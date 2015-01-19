@@ -64,7 +64,7 @@ app.set('port', (process.env.PORT || 5050));
 app.use(express.static(__dirname + '/public'));
 //send all epl chelsea games in JSON
 //TODO: send list of game schedule
-app.get('/', function (request, response) { response.send(nextGame); });
+//app.get('/', function (request, response) { response.send(nextGame); });
 //send upcoming(next) cheslsea game in JSON
-app.get('/nextgame', function (request, response) { response.send(nextGame); });
+//app.get('/nextgame', function (request, response) { response.send(nextGame); });
 app.listen(app.get('port'), function () { console.log("Running at port: " + app.get('port')); });
