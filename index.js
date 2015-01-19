@@ -54,7 +54,7 @@ function detectNextGame(gameDate, callback) {
 			}, 600000)
 			callback('http://www.chelseafc.com/matches/fixtures---results.html', formatGameDate)
 	    } else { 
-		    console.log('no chelsea game'); }
+		    console.log("it's " + curDate + ', not chelsea gametime'); }
 	}, 30000);
 }
 
