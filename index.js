@@ -45,7 +45,7 @@ function detectNextGame(gameDate, callback) {
 	setInterval(function () {
 	    var curDate = new Date();
         http.get("http://yochelseagame.herokuapp.com");
-		console.log(gameDate);
+		console.log("next game is... " + gameDate);
 	    if (checkWithinMinuteOfGame(gameDate, curDate)) {
 	        console.log("chelsea game!");
 	        sendChelseaGameYoAll();
@@ -54,7 +54,7 @@ function detectNextGame(gameDate, callback) {
 			}, 600000)
 			callback('http://www.chelseafc.com/matches/fixtures---results.html', formatGameDate)
 	    } else { 
-		    console.log(curDate + ', not chelsea gametime'); }
+		    console.log(curDate + ', not game time yet'); }
 	}, 30000);
 }
 
