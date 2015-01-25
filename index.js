@@ -19,7 +19,7 @@ function checkWithinMinuteOfGame(older, newer) {
 function sendChelseaGameYoAll() {
     request.post('http://api.justyo.co/yoall/', {
         form: {
-            api_token: '30b8c2bc-354e-4647-a1f9-2ec24ffd7a7b'
+            api_token: '013f305b-6cb9-43aa-8af5-5d96d58fdc70'
         }
     });
 }
